@@ -14,17 +14,23 @@ def hello():
 # returns the data that we send when we use POST.
 @app.route('/extract', methods=['POST'])
 def home():
+    error = "First"
     try:
         data = json.loads(request.data)
+        error = "second"
         model = data["model"]
+        error = "second 1"
         document = data["doc"]
-
+        error = "second 2"
         trainer = Trainer()
+        error = "second 3"
         entities = trainer.extract_entities(document, model)
+        error = "second 4"
         filtered_entities = Trainer.convert_result(entities.ents)
+        error = "second 5"
         return jsonify(filtered_entities)
     except:
-        return "Error occured"
+        return error
 
 
 # A simple function to calculate the square of a number
