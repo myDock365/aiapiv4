@@ -14,15 +14,17 @@ def hello():
 # returns the data that we send when we use POST.
 @app.route('/extract', methods=['POST'])
 def home():
-    data = json.loads(request.data)
-    model = data["model"]
-    document = data["doc"]
+    try:
+        data = json.loads(request.data)
+        model = data["model"]
+        document = data["doc"]
 
-    trainer = Trainer()
-    entities = trainer.extract_entities(document, model)
-    filtered_entities = Trainer.convert_result(entities.ents)
-    return jsonify(filtered_entities)
-    #return "Test"
+        trainer = Trainer()
+        entities = trainer.extract_entities(document, model)
+        filtered_entities = Trainer.convert_result(entities.ents)
+        return jsonify(filtered_entities)
+    except:
+        return "Error occured"
 
 
 # A simple function to calculate the square of a number
