@@ -28,9 +28,9 @@ def home():
         #error = entities
         #filtered_entities = Trainer.convert_result(entities.ents)
         # return jsonify(filtered_entities)
-        return entities
-    except:
-        return error
+        return "Error"
+    except Exception as ex:
+        return "Error"+ex
 
 
 # A simple function to calculate the square of a number
