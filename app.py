@@ -28,7 +28,7 @@ def home():
         #error = entities
         #filtered_entities = Trainer.convert_result(entities.ents)
         # return jsonify(filtered_entities)
-        return "Error "+entities
+        return "Error "+str(entities)
     except Exception as ex:
         return "Error"+ex
 
