@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 import json
-#from common.utilities import Trainer
+from common.utilities import Trainer
 
 # creating a Flask app
 app = Flask(__name__)
