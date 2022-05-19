@@ -28,8 +28,18 @@ def home():
         error = "second 3"
         entities = trainer.extract_entities(document, model)
         error = entities
-        filtered_entities = Trainer.convert_result(entities.ents)
-        return jsonify(filtered_entities)
+        #filtered_entities = Trainer.convert_result(entities.ents)
+        #return jsonify(filtered_entities)
+
+
+        directory = "fist"
+        rootkit = app.root_path
+        for file in os.listdir(rootkit):
+            d = os.path.join(rootkit, file)
+            if os.path.isdir(d):
+                directory += "-"+str(d)
+
+        return "Error "+str(entities)+" "+directory
     except Exception as ex:
         return "Error"+ex
 
