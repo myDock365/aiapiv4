@@ -18,9 +18,12 @@ class Trainer:
 
     @staticmethod
     def extract_entities(document, model):
-        nlp_ner = spacy.load(model)
-        doc = nlp_ner(document)
-        return doc;
+        try:
+            nlp_ner = spacy.load(model)
+            doc = nlp_ner(document)
+            return doc
+        except Exception as e:
+            return e
 
     @staticmethod
     def convert_training_data(training_data):
