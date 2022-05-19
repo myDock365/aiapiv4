@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, jsonify, request
 import json
 from common.utilities import Trainer
@@ -28,7 +30,14 @@ def home():
         #error = entities
         #filtered_entities = Trainer.convert_result(entities.ents)
         # return jsonify(filtered_entities)
-        return "Error "+str(entities)+" "+app.root_path
+        directory = "fist"
+        rootkit = app.root_path
+        for file in os.listdir(rootkit):
+            d = os.path.join(rootkit, file)
+            if os.path.isdir(d):
+                directory += "-"+str(d)
+
+        return "Error "+str(entities)+" "+directory
     except Exception as ex:
         return "Error"+ex
 
