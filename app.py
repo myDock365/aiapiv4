@@ -25,10 +25,10 @@ def home():
         trainer = Trainer()
         error = "second 3"
         entities = trainer.extract_entities(document, model)
-        error = entities
-        filtered_entities = Trainer.convert_result(entities.ents)
-        #error = "second 5"
-        return jsonify(filtered_entities)
+        #error = entities
+        #filtered_entities = Trainer.convert_result(entities.ents)
+        # return jsonify(filtered_entities)
+        return entities
     except:
         return error
 
