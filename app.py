@@ -18,11 +18,11 @@ def home():
     model = data["model"]
     document = data["doc"]
 
-    #trainer = Trainer()
-    #entities = trainer.extract_entities(document, model)
-    #filtered_entities = Trainer.convert_result(entities.ents)
-    #return jsonify(filtered_entities)
-    return "Test"
+    trainer = Trainer()
+    entities = trainer.extract_entities(document, model)
+    filtered_entities = Trainer.convert_result(entities.ents)
+    return jsonify(filtered_entities)
+    #return "Test"
 
 
 # A simple function to calculate the square of a number
