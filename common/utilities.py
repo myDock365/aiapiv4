@@ -45,3 +45,30 @@ class Trainer:
             doc_bin.add(doc)
 
         doc_bin.to_disk("training_data.spacy")  # save the docbin object
+
+    @staticmethod
+    def get_paragraphs(text):
+        en = spacy.load('en_core_web_sm')
+        doc = en(text)
+
+        seen = set()  # keep track of covered words
+
+        chunks = []
+        for sent in doc.sents:
+            heads = [cc for cc in sent.root.children if cc.dep_ == 'conj']
+
+            for head in heads:
+                words = [ww for ww in head.subtree]
+                for word in words:
+                    seen.add(word)
+                chunk = (' '.join([ww.text for ww in words]))
+                chunks.append((head.i, chunk))
+
+            unseen = [ww for ww in sent if ww not in seen]
+            chunk = ' '.join([ww.text for ww in unseen])
+            chunks.append((sent.root.i, chunk))
+
+        chunks = sorted(chunks, key=lambda x: x[0])
+
+        return chunks
+

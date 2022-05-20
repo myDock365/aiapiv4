@@ -7,5 +7,7 @@ class Entities:
         self.entity_value = entity_value
 
     def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__,
-                          sort_keys=True, indent=4)
+        return {
+            "entity": self.entity_name,
+            "value": self.entity_value
+        }

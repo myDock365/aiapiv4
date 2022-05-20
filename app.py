@@ -19,17 +19,14 @@ def home():
     error = "First"
     try:
         data = json.loads(request.data)
-        error = "second"
         model = data["model"]
-        error = "second 1"
         document = data["doc"]
-        error = "second 2"
         trainer = Trainer()
-        error = "second 3"
         entities = trainer.extract_entities(document, app.root_path+model)
-        error = entities
         filtered_entities = Trainer.convert_result(entities.ents)
-        return jsonify(filtered_entities)
+        paragraphs = Trainer.get_paragraphs(document)
+        return jsonify({"entities": filtered_entities, "paragraphs": paragraphs})
+        #return filtered_entities
     except Exception as ex:
         return "Error"+ex
 
@@ -44,6 +41,6 @@ def disp(num):
 
 
 # driver function
-#if __name__ == '__main__':
-    #app.run(port=5000)
+if __name__ == '__main__':
+    app.run(port=5000)
 
