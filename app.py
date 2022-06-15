@@ -18,15 +18,31 @@ def hello():
 def home():
     error = "First"
     try:
-        data = json.loads(request.data)
+        #json_data = request.data.replace('"', '\"')
+        data = json.loads(request.data, strict=False)
         model = data["model"]
         document = data["doc"]
+
+        input_array = []
+        maxn = 25000
+        for index in range(0, len(document), maxn):
+            input_array.append(document[index: index + maxn])
+        filtered_entities = []
+
         trainer = Trainer()
-        entities = trainer.extract_entities(document, app.root_path+model)
-        filtered_entities = Trainer.convert_result(entities.ents)
-        paragraphs = Trainer.get_paragraphs(document)
-        return jsonify({"entities": filtered_entities, "paragraphs": paragraphs})
-        #return filtered_entities
+
+        for mod in model:
+            for doc in input_array:
+                print("")
+                entities = trainer.extract_entities(doc, mod["model_path"])
+                filtered_entities += Trainer.convert_result(entities.ents, mod["model_name"])
+                #paragraphs = Trainer.get_paragraphs(document)
+                #filtered_entities += trainer.find_additionalEntities(paragraphs)
+
+        for doc in input_array:
+            filtered_entities += trainer.find_rule_result(doc)
+
+        return jsonify({"entities": filtered_entities})
     except Exception as ex:
         return "Error"+ex
 
