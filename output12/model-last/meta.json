@@ -1,0 +1,190 @@
+{
+  "lang":"en",
+  "name":"pipeline",
+  "version":"0.0.0",
+  "spacy_version":">=3.2.4,<3.3.0",
+  "description":"",
+  "author":"",
+  "email":"",
+  "url":"",
+  "license":"",
+  "spacy_git_version":"b50fe5ec6",
+  "vectors":{
+    "width":0,
+    "vectors":0,
+    "keys":0,
+    "name":null,
+    "mode":"default"
+  },
+  "labels":{
+    "tok2vec":[
+
+    ],
+    "ner":[
+      "Agreement Date",
+      "Anti",
+      "Audit Rights",
+      "Cap On Liability",
+      "Change Of Control",
+      "Covenant Not To Sue",
+      "Document Name",
+      "Effective Date",
+      "Exclusivity",
+      "Expiration Date",
+      "Governing Law",
+      "Insurance",
+      "Ip Ownership Assignment",
+      "License Grant",
+      "Liquidated Damages",
+      "Minimum Commitment",
+      "Parties",
+      "Post",
+      "Renewal Term",
+      "Revenue/Profit Sharing",
+      "Termination For Convenience",
+      "Third Party Beneficiary",
+      "Volume Restriction",
+      "Warranty Duration"
+    ]
+  },
+  "pipeline":[
+    "tok2vec",
+    "ner"
+  ],
+  "components":[
+    "tok2vec",
+    "ner"
+  ],
+  "disabled":[
+
+  ],
+  "performance":{
+    "ents_f":0.995,
+    "ents_p":0.995,
+    "ents_r":0.995,
+    "ents_per_type":{
+      "Agreement Date":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "Document Name":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "Parties":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "License Grant":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "Anti-Assignment":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "Covenant Not To Sue":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "Insurance":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "Expiration Date":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "Post-Termination Services":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "Governing Law":{
+        "p":0.9090909091,
+        "r":1.0,
+        "f":0.9523809524
+      },
+      "Revenue/Profit Sharing":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "Effective Date":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "Warranty Duration":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "Ip Ownership Assignment":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "Third Party Beneficiary":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "Volume Restriction":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "Liquidated Damages":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "Termination For Convenience":{
+        "p":0.5,
+        "r":0.5,
+        "f":0.5
+      },
+      "Cap On Liability":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "Exclusivity":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "Minimum Commitment":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "Renewal Term":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "Audit Rights":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "Change Of Control":{
+        "p":1.0,
+        "r":0.5,
+        "f":0.6666666667
+      }
+    },
+    "tok2vec_loss":32738.4884842776,
+    "ner_loss":210.7284667813
+  }
+}

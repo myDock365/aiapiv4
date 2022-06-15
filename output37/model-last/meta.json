@@ -1,0 +1,112 @@
+{
+  "lang":"en",
+  "name":"pipeline",
+  "version":"0.0.0",
+  "spacy_version":">=3.3.1,<3.4.0",
+  "description":"",
+  "author":"",
+  "email":"",
+  "url":"",
+  "license":"",
+  "spacy_git_version":"5fb597f77",
+  "vectors":{
+    "width":0,
+    "vectors":0,
+    "keys":0,
+    "name":null,
+    "mode":"default"
+  },
+  "labels":{
+    "tok2vec":[
+
+    ],
+    "ner":[
+      "AGREEMENT DATE",
+      "COVENANT NOT TO SUE",
+      "EFFECTIVE DATE",
+      "EXPIRATION DATE",
+      "GOVERNING LAW",
+      "INSURANCE",
+      "NON",
+      "PARTIES",
+      "RENEWAL TERM",
+      "TERMINATION FOR CONVENIENCE",
+      "WARRANTY DURATION"
+    ]
+  },
+  "pipeline":[
+    "tok2vec",
+    "ner"
+  ],
+  "components":[
+    "tok2vec",
+    "ner"
+  ],
+  "disabled":[
+
+  ],
+  "performance":{
+    "ents_f":0.9705882353,
+    "ents_p":0.9734513274,
+    "ents_r":0.9677419355,
+    "ents_per_type":{
+      "AGREEMENT DATE":{
+        "p":0.8846153846,
+        "r":0.9583333333,
+        "f":0.92
+      },
+      "EFFECTIVE DATE":{
+        "p":0.9523809524,
+        "r":0.9090909091,
+        "f":0.9302325581
+      },
+      "PARTIES":{
+        "p":0.9758064516,
+        "r":0.9603174603,
+        "f":0.968
+      },
+      "EXPIRATION DATE":{
+        "p":0.9393939394,
+        "r":1.0,
+        "f":0.96875
+      },
+      "RENEWAL TERM":{
+        "p":1.0,
+        "r":0.9166666667,
+        "f":0.9565217391
+      },
+      "INSURANCE":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "TERMINATION FOR CONVENIENCE":{
+        "p":1.0,
+        "r":0.9333333333,
+        "f":0.9655172414
+      },
+      "NON-COMPETE":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "GOVERNING LAW":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "COVENANT NOT TO SUE":{
+        "p":1.0,
+        "r":1.0,
+        "f":1.0
+      },
+      "WARRANTY DURATION":{
+        "p":1.0,
+        "r":0.8571428571,
+        "f":0.9230769231
+      }
+    },
+    "tok2vec_loss":27999.5517885639,
+    "ner_loss":1073.9648556291
+  }
+}

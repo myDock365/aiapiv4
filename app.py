@@ -34,7 +34,7 @@ def home():
         for mod in model:
             for doc in input_array:
                 print("")
-                entities = trainer.extract_entities(doc, mod["model_path"])
+                entities = trainer.extract_entities(doc, app.root_path+mod["model_path"])
                 filtered_entities += Trainer.convert_result(entities.ents, mod["model_name"])
                 #paragraphs = Trainer.get_paragraphs(document)
                 #filtered_entities += trainer.find_additionalEntities(paragraphs)

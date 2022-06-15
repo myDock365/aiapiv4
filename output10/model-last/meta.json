@@ -1,0 +1,88 @@
+{
+  "lang":"en",
+  "name":"pipeline",
+  "version":"0.0.0",
+  "spacy_version":">=3.2.4,<3.3.0",
+  "description":"",
+  "author":"",
+  "email":"",
+  "url":"",
+  "license":"",
+  "spacy_git_version":"b50fe5ec6",
+  "vectors":{
+    "width":0,
+    "vectors":0,
+    "keys":0,
+    "name":null,
+    "mode":"default"
+  },
+  "labels":{
+    "tok2vec":[
+
+    ],
+    "ner":[
+      "CONFIDENTIAL",
+      "FORCE MAJURE",
+      "GOVERNING LAW",
+      "INJUNCTIVE RELIEF",
+      "TERMINATION",
+      "TERMS",
+      "WARRENTIE"
+    ]
+  },
+  "pipeline":[
+    "tok2vec",
+    "ner"
+  ],
+  "components":[
+    "tok2vec",
+    "ner"
+  ],
+  "disabled":[
+
+  ],
+  "performance":{
+    "ents_f":0.7765726681,
+    "ents_p":0.7955555556,
+    "ents_r":0.7584745763,
+    "ents_per_type":{
+      "CONFIDENTIAL":{
+        "p":0.8347107438,
+        "r":0.731884058,
+        "f":0.7799227799
+      },
+      "GOVERNING LAW":{
+        "p":0.8571428571,
+        "r":0.8108108108,
+        "f":0.8333333333
+      },
+      "TERMS":{
+        "p":0.7368421053,
+        "r":0.9333333333,
+        "f":0.8235294118
+      },
+      "TERMINATION":{
+        "p":0.6585365854,
+        "r":0.7714285714,
+        "f":0.7105263158
+      },
+      "INJUNCTIVE RELIEF":{
+        "p":0.5,
+        "r":1.0,
+        "f":0.6666666667
+      },
+      "FORCE MAJURE":{
+        "p":0.0,
+        "r":0.0,
+        "f":0.0
+      },
+      "WARRENTIE":{
+        "p":0.8571428571,
+        "r":1.0,
+        "f":0.9230769231
+      }
+    },
+    "tok2vec_loss":195399.5753610132,
+    "ner_loss":4023.956527655
+  }
+}
