@@ -108,9 +108,10 @@ class Trainer:
     @staticmethod
     def convert_result(result, model):
         filtered_entities = []
-        for entity in result:
-            ent = Entities(entity.label_, entity.text, model)
-            filtered_entities.append(ent.toJSON())
+        if len(result) > 0:
+            for entity in result:
+                ent = Entities(entity.label_, entity.text, model, entity.start_char, entity.end_char-entity.start_char)
+                filtered_entities.append(ent.toJSON())
 
         return filtered_entities
 
@@ -119,7 +120,6 @@ class Trainer:
         nlp = spacy.load("en_core_web_sm")
         filtered_entities = []
         # Initialize the matcher with the shared vocab
-
 
         for pat in self.pattern:
             # Add the pattern to the matcher
@@ -142,7 +142,7 @@ class Trainer:
                 for match_id, start, end in sorted_match:
                     # Get the matched span
                     matched_span = doc[start:end]
-                    ent = Entities(pat["name"], matched_span.text, "From Rule")
+                    ent = Entities(pat["name"], matched_span.text, "From Rule", start, end-start)
                     filtered_entities.append(ent.toJSON())
 
         return filtered_entities
@@ -153,7 +153,7 @@ class Trainer:
             for key in self.rule:
                 for entity in key["entityValue"].split(","):
                     if entity in paragraph[1]:
-                        ent = Entities(key["entype"], paragraph)
+                        ent = Entities(key["entype"], paragraph, 10, 10)
                         filtered_entities.append(ent.toJSON())
 
         return filtered_entities
