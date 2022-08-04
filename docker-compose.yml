@@ -1,0 +1,59 @@
+version: "3.9"
+services:
+
+  app:
+    image: mydockerdemov7/nodev5
+    restart: unless-stopped
+#    image: mydock365/cms-backend-services:2644
+    build: .
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+      - ORIGIN=https://mydock.sharepoint.com
+      - MONGO_USERNAME=root
+      - MONGO_PASSWORD=root
+      - MONGO_PORT=27017
+      - MONGO_DB=CMSBackendServices
+      - BASE_URL=https://dock365-backend-services-qa.azurewebsites.net
+      - MONGO_HOSTNAME=db
+
+      - REDIS_HOSTNAME=redis
+      - REDIS_PORT=6379
+
+      - SITE_URL=https://mydock.sharepoint.com/sites/ContractManagementQA
+      - CLIENT_ID=02fca26d-b10e-459a-a290-1eae902e1586
+      - CLIENT_SECRET=DdAU5g3+8l7gpzgeC1T1sQeY64xp4Y9Z2qwd8roMwFU=
+
+      - DOCUSIGN_SECRET=4a6ce6ed-8b9c-42b9-85a3-bd3271c5b411
+      - DOCUSIGN_INTEGRATION_KEY=b923b717-0122-4cd6-a635-112022eaf3c6
+      - DOCUSIGN_ACCOUNT_ID=847039f8-7bf4-4a54-8ae9-2e419778cf42
+      - DOCUSIGN_CONNECT_SECRET=2Va7ttYFZxDueKl08i+ekUbg9XTADw0pxOvMUJvJ3fY=
+
+    ports:
+      - "8080:8080"
+    volumes:
+      - app:/home/node/app
+      - node_modules:/home/node/app/node_modules
+    networks:
+      - app-network
+
+  ai:
+    image: mydockerdemov7/aiapiv5
+    restart: unless-stopped
+    volumes:
+      - app:/home/python/app
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+  node_modules:
+  app:

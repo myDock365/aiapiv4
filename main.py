@@ -3,6 +3,7 @@ import os
 from flask import Flask, jsonify, request
 import json
 from common.utilities import Trainer
+from common.extraction_job import *
 
 # creating a Flask app
 app = Flask(__name__)
@@ -18,31 +19,41 @@ def hello():
 def home():
     error = "First"
     try:
-        #json_data = request.data.replace('"', '\"')
+        # json_data = request.data.replace('"', '\"')
         data = json.loads(request.data, strict=False)
         model = data["model"]
         document = data["doc"]
+        document = Trainer.clean_text_value(document)
 
         input_array = []
-        maxn = 25000
-        for index in range(0, len(document), maxn):
-            input_array.append(document[index: index + maxn])
+        max_n = 10000000
+        for index in range(0, len(document), max_n):
+            input_array.append(document[index: index + max_n])
         filtered_entities = []
+        documents = []
 
         trainer = Trainer()
 
-        for mod in model:
-            for doc in input_array:
-                print("")
-                entities = trainer.extract_entities(doc, mod["model_path"])
-                filtered_entities += Trainer.convert_result(entities.ents, mod["model_name"])
-                #paragraphs = Trainer.get_paragraphs(document)
-                #filtered_entities += trainer.find_additionalEntities(paragraphs)
-
         for doc in input_array:
-            filtered_entities += trainer.find_rule_result(doc)
+            for mod in model:
 
-        return jsonify({"entities": filtered_entities})
+                entities = trainer.extract_entities(doc, app.root_path+mod["model_path"])
+                filtered_entities += Trainer.convert_result(entities.ents, mod["model_name"])
+                filtered_entities = trainer.find_missing_entities(doc, filtered_entities)
+                # paragraphs = Trainer.get_paragraphs(document)
+                # filtered_entities += trainer.find_additionalEntities(paragraphs)
+
+            #filtered_entities =
+            filtered_entities = Trainer.sort_entities(filtered_entities)
+            document_json = Trainer.convert_to_doc(1, filtered_entities)
+            documents.append(document_json)
+
+        task = Job(documents)
+
+        # for doc in input_array:
+            # filtered_entities += trainer.find_rule_result(doc)
+
+        return jsonify(task.toJSON())
     except Exception as ex:
         return "Error"+ex
 
@@ -58,5 +69,5 @@ def disp(num):
 
 # driver function
 if __name__ == '__main__':
-    app.run(port=5000)
+    app.run(host="0.0.0.0", port=5000)
 
